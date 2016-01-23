@@ -1,0 +1,66 @@
+{
+	"uuid" : "ab0c4f65-e669-42c1-8816-eb4b19c8ca82",
+	"user" : "Atento",
+	"versionApp" : "0.1",
+	"theme" : "iPach",
+	"title" : "Atento Chat",
+	"logo" : {
+			"type" : "icon",
+			"src" : "uk-icon-comments-o"
+		},
+	"messages" : {
+		"welcome" : "Gracias por contactarnos, selecciona un servicio."
+	},
+	"queues" : 
+		[{
+			"id" : 1,
+			"name" : "Atención a clientes"
+		},
+		{
+			"id" : 2,
+			"name" : "Ventas"
+		}]
+	,
+	"crm" : {
+		"id" : "frmCrm",
+		"title" : "Por favor ingresa los siguientes datos",
+		"icon" : "<i class=\"uk-icon-bullseye\"></i>",
+		"action" : "#",
+		"method" : "get",
+		"buttons" : [
+			{
+				"class" : "uk-button uk-button-success",
+				"action" : "#",
+				"label" : "Aceptar"
+			}
+		],
+		"fields" : [
+			{
+				"name" : "txtNameCustomer",
+				"type" : "text",
+				"label" : "Nombre",
+				"labelError" : "Por favor ingrese un nombre",
+				"placeHolder" : "Ingrese su nombre",
+				"require" : true,
+				"length" : {
+					"max" : 20,
+					"min" : 3
+				},
+				"both" : true
+			},
+			{
+				"name" : "txtPhoneNumber",
+				"type" : "text",
+				"label" : "Teléfono",
+				"labelError" : "Por favor ingrese su numero",
+				"placeHolder" : "Ingrese su telefono",
+				"require" : true,
+				"length" : {
+					"max" : 20,
+					"min" : 3
+				},
+				"both" : true
+			}
+		]
+	}
+}

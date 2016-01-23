@@ -1,0 +1,31 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300);
+html,body{margin:0px;padding: 0px;height: 100%;width: 100%;font-family: 'Open Sans', sans-serif;font-weight: 300;}
+
+.ip-template{
+	padding: 30px;
+}
+
+.ip-logo-welcome{
+	color: #59617B;
+	font-size: 100px;
+	margin-top: 20px;
+}
+.ip-title-primary{
+	font-size: 30px;
+	margin-top: 20px;
+}
+.ip-title-principal{
+	font-size: 20px;
+}
+	.ip-list-queues{
+		font-size: 17px;
+	}
+
+div [data-role="frm-title"]{
+	margin-top: 15px;
+	font-size: 17px;
+}
+
+[data-role="step_crm"]{
+	margin: 0px 40px;
+}
