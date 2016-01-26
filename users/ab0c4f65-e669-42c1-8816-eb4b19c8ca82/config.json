@@ -9,7 +9,8 @@
 			"src" : "uk-icon-comments-o"
 		},
 	"messages" : {
-		"welcome" : "Gracias por contactarnos, selecciona un servicio."
+		"welcome" : "Gracias por contactarnos, selecciona un servicio.",
+		"wait" : "Estamos contactando al primer agente disponible, por favor espere unos momentos"
 	},
 	"queues" : 
 		[{
@@ -23,6 +24,8 @@
 	,
 	"crm" : {
 		"id" : "frmCrm",
+		"autosumbit" : false,
+		"callBack" : "Q.nextStep",
 		"title" : "Por favor ingresa los siguientes datos",
 		"icon" : "<i class=\"uk-icon-bullseye\"></i>",
 		"action" : "#",
@@ -54,6 +57,18 @@
 				"label" : "Teléfono",
 				"labelError" : "Por favor ingrese su numero",
 				"placeHolder" : "Ingrese su telefono",
+				"require" : true,
+				"length" : {
+					"max" : 20,
+					"min" : 3
+				},
+				"both" : true
+			},
+			{
+				"name" : "txtAreaComments",
+				"type" : "textArea",
+				"label" : "Comentarios",
+				"labelError" : "Por favor ingrese un comentario",
 				"require" : true,
 				"length" : {
 					"max" : 20,
