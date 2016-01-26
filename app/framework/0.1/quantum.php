@@ -56,6 +56,11 @@
 			}
 		}
 
+		public function getMessageBox($properties){
+			return '<textarea '.((isset($properties['class']) ? 'class="'.$properties['class'].'"' : ''))
+					.'></textarea>';
+		}
+
 		public function paintForm($_FORM,$withForm = true){
 			$t='';
 			foreach ($_FORM['fields'] as $key => $value) {
@@ -76,6 +81,15 @@
 								$t .= '<input type="text" name="'.$value['name'].'" placeholder="'.((!isset($value['placeholder'])) ? '' : $value['placeholder']).'" class="" data-require="'.$value['require'].'" data-min="'.$value['length']['min'].'" data-max="'.$value['length']['max'].'" autocomplete="off">';
 							$t .= '</div>';
 						$t .= '</div>';
+					break;
+					case 'textArea':
+						$t .= '<div class="uk-form-row">';
+							$t .= '<label class="uk-form-label" style="color:#646464">'.$value['label'].'</label>';
+							$t .= '<div class="uk-form-controls">';
+								$t .= '<textarea type="text" name="'.$value['name'].'" class="uk-width-1-1" data-require="'.$value['require'].'" data-min="'.$value['length']['min'].'" data-max="'.$value['length']['max'].'" autocomplete="off"></textarea>';
+							$t .= '</div>';
+						$t .= '</div>';
+
 					break;
 					case 'combo':
 						$t .= '<div class="uk-form-row">';
@@ -106,7 +120,11 @@
 			}
 			
 
-		return ($withForm) ? '<form class="uk-form uk-form-horizontal" id="'.$_FORM['id'].'" action="'.$_FORM['action'].'" method="'.$_FORM['method'].'"><fieldset data-uk-margin><div class="uk-text-center" data-role="frm-title">'.$_FORM['title'].'</div><div style="margin:15px;">'.$t.'</div></fieldset></form>' : $t;
+		return ($withForm) ? '<form '.(($_FORM['autosumbit']) ? 'data-submit="true"' : 'data-submit="false"')
+				.' class="uk-form uk-form-horizontal" id="'.$_FORM['id']
+				.'" action="'.$_FORM['action'].'" method="'.$_FORM['method']
+				.'" data-callback="'.$_FORM['callBack'].'"><fieldset data-uk-margin><div class="uk-text-center" data-role="frm-title">'
+				.$_FORM['title'].'</div><div style="margin:15px;">'.$t.'</div></fieldset></form>' : $t;
 		}
 
 		public function get_url_server(){

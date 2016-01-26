@@ -10,11 +10,12 @@ var Quantum = function(){
 	this.__construct = function(){
 		this.prepareSteps();
 		this.activateQueues();
+		this.activeForms();
 	}
 
 	this.prepareSteps = function(){
 		var properties = {
-			start : 1
+			start : 3
 		}
 
 		this.currentStep = properties.start;
@@ -24,14 +25,36 @@ var Quantum = function(){
 		$(quantumProperties.steps[properties.start]).show();
 	}
 
+	this.activeForms = function(){
+		$form = this.selectForm();
+		
+	}
+		this.selectForm = function(){
+			var $FormActive = $(quantumProperties.selectorForms);
+			var res = new Array();
+			$.each($FormActive,function(index, value){
+				var callBack = $(value).attr('data-callback');
+				$(value).submit(function(event){
+					event.preventDefault();
+					
+					var stepTemplete = eval(callBack+'()');
+					
+
+				});
+				res[index] = {
+					obj : value,
+					callback : callBack
+				}
+			});
+			return res;
+		}
+
 	this.activateQueues = function(){
 		$queues = $(quantumProperties.selectorQueues);
 		$queues.click(this.actionQueues);
 	}
 		this.actionQueues = function(){
 			var stepTemplete = Q.nextStep();
-			stepTemplete.current.obj.hide();
-			stepTemplete.next.obj.show();
 		}
 
 	this.nextStep = function(){
@@ -39,6 +62,10 @@ var Quantum = function(){
 		var $nextS = $(quantumProperties.steps[nextS+1]);
 		var $current = $(quantumProperties.steps[nextS]);
 		Q.currentStep += 1;
+
+		$current.hide();
+		$nextS.show();
+
 		return {
 				next : {
 					obj : $nextS,
@@ -52,11 +79,3 @@ var Quantum = function(){
 	}
 }
 
-var quantumProperties = {
-	selectorQueues : '[data-role = "q_queue"]',
-	steps : [
-		'[data-role="step_welcome"]',
-		'[data-role="step_crm"]'
-	],
-	flow : [0,1,2,3]
-}
