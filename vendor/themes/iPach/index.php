@@ -65,10 +65,6 @@
 		<?= ($QuantumObjTheme->paintForm($_USERTheme['crm'])); ?>
 	</div>
 	<div data-role="step_wait">
-<<<<<<< HEAD
-=======
-		<div class="uk-text-center ip-logo-welcome"><?= $QuantumObjTheme->get_logo($_USERTheme['logo']); ?></div>
->>>>>>> refs/remotes/origin/master
 		<?php 
 			if(isset($_GET['queue'])){
 				include 'action.php';
@@ -86,19 +82,13 @@
 				<?php
 			}
 		?>
-<<<<<<< HEAD
 		<div class="uk-text-center ip-logo-welcome" style="margin-top:70px"><?= $QuantumObjTheme->get_logo($_USERTheme['logo']); ?></div>
 		<div class="uk-text-center ip-title-principal" style="padding: 150px 30px 0px 30px;color:#333">
-=======
-
-		<div class="uk-text-center ip-title-principal ip-template">
->>>>>>> refs/remotes/origin/master
 			<?= $_USERTheme['messages']['wait']; ?>
 		</div>
 	</div>
 
 	<div data-role="step_chat">
-<<<<<<< HEAD
 		<div class="uk-navbar" data-role="navBar">
 			<ul class="uk-navbar-nav">
 				 <li class="uk-active"><a href=""><i class="uk-icon-chevron-left"></i></a></li>
@@ -132,16 +122,6 @@
 			</div>
 			
 		</div>
-=======
-		<div>
-			
-		</div>
-		<div data-role="boxChat">
-			<?= $QuantumObjTheme->getMessageBox(array(
-				'class' => 'uk-width-1-1'
-			)); ?>
-		</div>
->>>>>>> refs/remotes/origin/master
 	</div>
 </body>
 </html>

@@ -10,11 +10,7 @@
 		},
 	"messages" : {
 		"welcome" : "Gracias por contactarnos, selecciona un servicio.",
-<<<<<<< HEAD
 		"wait" : "Estamos contactando al primer agente disponible, por favor espere unos momentos."
-=======
-		"wait" : "Estamos contactando al primer agente disponible, por favor espere unos momentos"
->>>>>>> refs/remotes/origin/master
 	},
 	"queues" : 
 		[{

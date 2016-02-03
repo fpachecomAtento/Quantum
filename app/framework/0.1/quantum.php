@@ -58,13 +58,8 @@
 		}
 
 		public function getMessageBox($properties){
-<<<<<<< HEAD
 			return '<textarea rows="3" '.((isset($properties['class']) ? 'class="'.$properties['class'].'"' : ''))
 					.' placeholder="Escribenos un mensaje"></textarea>';
-=======
-			return '<textarea '.((isset($properties['class']) ? 'class="'.$properties['class'].'"' : ''))
-					.'></textarea>';
->>>>>>> refs/remotes/origin/master
 		}
 
 		public function paintForm($_FORM,$withForm = true){
@@ -90,11 +85,7 @@
 					break;
 					case 'textArea':
 						$t .= '<div class="uk-form-row">';
-<<<<<<< HEAD
 							$t .= '<label class="uk-form-label">'.$value['label'].'</label>';
-=======
-							$t .= '<label class="uk-form-label" style="color:#646464">'.$value['label'].'</label>';
->>>>>>> refs/remotes/origin/master
 							$t .= '<div class="uk-form-controls">';
 								$t .= '<textarea type="text" name="'.$value['name'].'" class="uk-width-1-1" data-require="'.$value['require'].'" data-min="'.$value['length']['min'].'" data-max="'.$value['length']['max'].'" autocomplete="off"></textarea>';
 							$t .= '</div>';
