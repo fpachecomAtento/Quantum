@@ -10,16 +10,20 @@
 		},
 	"messages" : {
 		"welcome" : "Gracias por contactarnos, selecciona un servicio.",
-		"wait" : "Estamos contactando al primer agente disponible, por favor espere unos momentos"
+		"wait" : "Estamos contactando al primer agente disponible, por favor espere unos momentos."
 	},
 	"queues" : 
 		[{
 			"id" : 1,
-			"name" : "Atención a clientes"
+			"icon" : "uk-icon-child",
+			"name" : "Atención a clientes",
+			"caption" : "Te ayudamos a resolver todas tus dudas, no dudes en contactarnos."
 		},
 		{
 			"id" : 2,
-			"name" : "Ventas"
+			"icon" : "uk-icon-mobile",
+			"name" : "Ventas",
+			"caption" : "¿Buscas un nuevo equipo?, te ayudamos a elegir el mejor."
 		}]
 	,
 	"crm" : {

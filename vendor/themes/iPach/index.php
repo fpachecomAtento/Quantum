@@ -32,7 +32,7 @@
 	<script type="text/javascript" src="<?= 
 		$QuantumObjTheme->get_url_server()
 			.$QuantumObjTheme->configDefault['pathPrimary']
-			.$QuantumObjTheme->configDefault['pathJsFramework']
+			.$QuantumObjTheme->configDefault['pathAppClient']
 			.'/'.$_USERTheme['versionApp']
 			.'/quantum.js';
 	?>"></script>
@@ -45,20 +45,19 @@
 	"></script>
 </head>
 <body>
-	<div class="uk-navbar">
-		<div class="uk-navbar-content uk-navbar-center">
-			
-		</div>
-	</div>
 	<div data-role="step_welcome">
-		<div class="uk-text-center ip-logo-welcome"><?= $QuantumObjTheme->get_logo($_USERTheme['logo']); ?></div>
+		
 		<div class="uk-text-center ip-title-primary"><?= $_USERTheme['title']; ?></div>
 		<div class="uk-text-center ip-title-principal ip-template" >
 			<?= $_USERTheme['messages']['welcome']; ?>
 		</div>
-		<div class="uk-text-center ip-list-queues">
+		<div class="uk-text-center ip-logo-welcome"><?= $QuantumObjTheme->get_logo($_USERTheme['logo']); ?></div>
+		<div class="ip-list-queues">
 			<?php
-				echo $QuantumObjTheme->get_queues($_USERTheme['queues'],'uk-nav');
+				echo $QuantumObjTheme->get_queues($_USERTheme['queues'],'ip-nav',array(
+						'caption' => true,
+						'icon' => true
+					));
 			?>
 		</div>
 	</div>
@@ -66,7 +65,6 @@
 		<?= ($QuantumObjTheme->paintForm($_USERTheme['crm'])); ?>
 	</div>
 	<div data-role="step_wait">
-		<div class="uk-text-center ip-logo-welcome"><?= $QuantumObjTheme->get_logo($_USERTheme['logo']); ?></div>
 		<?php 
 			if(isset($_GET['queue'])){
 				include 'action.php';
@@ -84,20 +82,45 @@
 				<?php
 			}
 		?>
-
-		<div class="uk-text-center ip-title-principal ip-template">
+		<div class="uk-text-center ip-logo-welcome" style="margin-top:70px"><?= $QuantumObjTheme->get_logo($_USERTheme['logo']); ?></div>
+		<div class="uk-text-center ip-title-principal" style="padding: 150px 30px 0px 30px;color:#333">
 			<?= $_USERTheme['messages']['wait']; ?>
 		</div>
 	</div>
 
 	<div data-role="step_chat">
-		<div>
-			
+		<div class="uk-navbar" data-role="navBar">
+			<ul class="uk-navbar-nav">
+				 <li class="uk-active"><a href=""><i class="uk-icon-chevron-left"></i></a></li>
+			</ul>
+			<div class="uk-navbar-content uk-navbar-center">
+				<b>Atento :</b>
+			</div>
 		</div>
-		<div data-role="boxChat">
-			<?= $QuantumObjTheme->getMessageBox(array(
-				'class' => 'uk-width-1-1'
-			)); ?>
+		<div data-role="messageBody">
+			<ul>
+				<li class="ip-popover-in">
+					<div>
+						<div class="ip-popover-in-body">Ultricies dignissim turpis phasellus! Vel cursus ac mattis ut et, aliquam risus eros sed porta. Ultrices. Cursus lectus nec amet urna, ut nunc! Sed magnis tincidunt mid rhoncus?</div>
+						<div class="ip-popover-in-time">06:10 pm</div>
+					</div>
+				</li>
+				<li class="ip-popover-out">
+					<div>
+						<div class="ip-popover-in-body">Urna mid proin tortor ac vel augue magna, augue ultricies, montes est porttitor dolor. Dignissim mattis velit integer. Turpis habitasse.</div>
+						<div class="ip-popover-in-time">06:12 pm</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div data-role="boxChat" class="ip-message-box">
+			<div class="uk-grid uk-grid-small">
+				<div class="uk-width-9-10"><?= $QuantumObjTheme->getMessageBox(array('class' => 'uk-width-1-1')); ?></div>
+				<div class="uk-width-1-10">
+						<button><i class="uk-icon-paper-plane-o"></i></button>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 </body>

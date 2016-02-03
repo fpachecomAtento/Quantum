@@ -12,7 +12,8 @@
 				'pathConfig' => '/config',
 				'pathTheme' => '/vendor/themes',
 				'pathjQuery' => '/vendor/jquery',
-				'pathJsFramework' => '/app/framework'
+				'pathJsFramework' => '/app/framework',
+				'pathAppClient' => '/app/client'
 			);
 		protected $errorMessage = array(
 				'get_settings' => 'No se encontro el archivo de configuraciones'
@@ -34,10 +35,10 @@
 			include $this->get_path_app().$this->configDefault['pathTheme'].'/'.$theme.'/index.php';
 		}
 
-		public function get_queues($queues,$class = false){
+		public function get_queues($queues,$class = false, $properties){
 			$listQueues = '<ul '.(($class) ? 'class="'.$class.'"' : '').'>';
 			foreach ($queues as $key => $value) {
-				$listQueues .= '<li><a href="#" id="q_'.$value['id'].'" data-role="q_queue" class="ip-primary-text-color">'.$value['name'].'</a></li>';
+				$listQueues .= '<li><a href="#" id="q_'.$value['id'].'" data-role="q_queue" class="ip-primary-text-color">'.(($properties['icon']) ? '<i class="'.$value['icon'].'"></i>' : '').$value['name'].'</a>'.(($properties['caption'])? '<label>'.$value['caption'].'</label>' : '').'</li>';
 			}
 			$listQueues .= '</ul>';
 
@@ -57,8 +58,8 @@
 		}
 
 		public function getMessageBox($properties){
-			return '<textarea '.((isset($properties['class']) ? 'class="'.$properties['class'].'"' : ''))
-					.'></textarea>';
+			return '<textarea rows="3" '.((isset($properties['class']) ? 'class="'.$properties['class'].'"' : ''))
+					.' placeholder="Escribenos un mensaje"></textarea>';
 		}
 
 		public function paintForm($_FORM,$withForm = true){
@@ -67,7 +68,7 @@
 				switch ($value['type']) {
 					case 'text':
 						$t .= '<div class="uk-form-row">';
-							$t .= '<label class="uk-form-label" style="color:#646464">'.$value['label'].'</label>';
+							$t .= '<label class="uk-form-label">'.$value['label'].'</label>';
 							$t .= '<div class="uk-form-controls">';
 								$t .= '<input type="text" name="'.$value['name'].'" placeholder="'.((!isset($value['placeholder'])) ? '' : $value['placeholder']).'" class="uk-width-1-1" data-require="'.$value['require'].'" data-min="'.$value['length']['min'].'" data-max="'.$value['length']['max'].'" autocomplete="off">';
 							$t .= '</div>';
@@ -76,7 +77,7 @@
 					break;
 					case 'number':
 						$t .= '<div class="uk-form-row">';
-							$t .= '<label class="uk-form-label" style="color:#646464">'.$value['label'].'</label>';
+							$t .= '<label class="uk-form-label">'.$value['label'].'</label>';
 							$t .= '<div class="uk-form-controls">';
 								$t .= '<input type="text" name="'.$value['name'].'" placeholder="'.((!isset($value['placeholder'])) ? '' : $value['placeholder']).'" class="" data-require="'.$value['require'].'" data-min="'.$value['length']['min'].'" data-max="'.$value['length']['max'].'" autocomplete="off">';
 							$t .= '</div>';
@@ -84,7 +85,7 @@
 					break;
 					case 'textArea':
 						$t .= '<div class="uk-form-row">';
-							$t .= '<label class="uk-form-label" style="color:#646464">'.$value['label'].'</label>';
+							$t .= '<label class="uk-form-label">'.$value['label'].'</label>';
 							$t .= '<div class="uk-form-controls">';
 								$t .= '<textarea type="text" name="'.$value['name'].'" class="uk-width-1-1" data-require="'.$value['require'].'" data-min="'.$value['length']['min'].'" data-max="'.$value['length']['max'].'" autocomplete="off"></textarea>';
 							$t .= '</div>';

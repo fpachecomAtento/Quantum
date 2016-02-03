@@ -1900,8 +1900,8 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
    Component: Navbar
  ========================================================================== */
 .uk-navbar {
-  background: #59617B;
-  color: #FAFAFC;
+  background: #FFF;
+  color: #5F6978;
 }
 /*
  * Micro clearfix
@@ -1961,7 +1961,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 .uk-navbar-nav > li:hover > a,
 .uk-navbar-nav > li > a:focus,
 .uk-navbar-nav > li.uk-open > a {
-  background-color: #696996;
+  background-color: #86B2B3;
   color: #FAFAFC;
   /* 3 */
   outline: none;
@@ -1973,7 +1973,7 @@ html:not(.uk-touch) .uk-nav-offcanvas ul a:hover {
 }
 /* Active */
 .uk-navbar-nav > li.uk-active > a {
-  background-color: #696996;
+  background-color: #86B2B3;
   color: #FAFAFC;
 }
 /* Sub-objects: `uk-navbar-nav-subtitle`
@@ -3463,7 +3463,7 @@ select.uk-form-width-mini {
  * Modifier: `uk-button-success`
  */
 .uk-button-success {
-  background-color: #8cc14c;
+  background-color: #9CC2BF;
   color: #ffffff;
 }
 /* Hover */
