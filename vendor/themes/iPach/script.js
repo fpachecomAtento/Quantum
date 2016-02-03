@@ -1,4 +1,5 @@
 var quantumProperties = {
+	start : 0,
 	selectorQueues : '[data-role = "q_queue"]',
 	steps : [
 		'[data-role="step_welcome"]', // 0
@@ -7,5 +8,10 @@ var quantumProperties = {
 		'[data-role="step_chat"]' // 3
 	],
 	flow : [0,1,2,3],
-	selectorForms : '[data-submit="false"]'
+	selectorForms : '[data-submit="false"]',
+	componentsChat : {
+		'head' : '[data-role="navBar"]',
+		'body' : '[data-role="messageBody"]',
+		'footer' : '[data-role="boxChat"]'
+	}
 }

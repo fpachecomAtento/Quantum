@@ -8,14 +8,16 @@ var Quantum = function(){
 	this.currentStep = 0;
 
 	this.__construct = function(){
+		$(window).resize(function(){Q.resizeChat(this);});
 		this.prepareSteps();
 		this.activateQueues();
 		this.activeForms();
+		this.resizeChat(window);
 	}
 
 	this.prepareSteps = function(){
 		var properties = {
-			start : 3
+			start : quantumProperties.start
 		}
 
 		this.currentStep = properties.start;
@@ -76,6 +78,18 @@ var Quantum = function(){
 					step : Q.currentStep	
 				}
 			};
+	}
+
+	this.resizeChat = function(win){
+		var heightWindow = $(win).outerHeight();
+
+		var h = $(quantumProperties.componentsChat['head']).outerHeight();
+		var b = $(quantumProperties.componentsChat['body']);
+		var f = 60;//$(quantumProperties.componentsChat['footer']).outerHeight();
+
+		$(b).css({
+			height : heightWindow-(h+f+20)
+		});
 	}
 }
 

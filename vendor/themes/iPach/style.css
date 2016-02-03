@@ -2,22 +2,22 @@
 html,body{margin:0px;padding: 0px;height: 100%;width: 100%;font-family: 'Open Sans', sans-serif;font-weight: 300;}
 
 .ip-template{
-	padding: 30px;
+	padding: 30px 30px 0px 30px;
 }
 
 .ip-logo-welcome{
-	color: #59617B;
 	font-size: 100px;
-	margin-top: 20px;
+	margin-top: 30px;
 }
 .ip-title-primary{
 	font-size: 30px;
-	margin-top: 20px;
+	padding-top: 30px;
 }
 .ip-title-principal{
-	font-size: 20px;
+	font-size: 15px;
 }
 	.ip-list-queues{
+		margin-top: 70px;
 		font-size: 17px;
 	}
 
@@ -26,6 +26,94 @@ div [data-role="frm-title"]{
 	font-size: 17px;
 }
 
+[data-role="step_welcome"], [data-role="step_crm"], [data-role="step_wait"]{
+	background: url('img/bk.png');
+	background-repeat-y: no-repeat;
+	background-size: auto 350px;
+	color: #FFFFFF;
+	height: 100%;
+}
+
+.ip-nav{
+	list-style: none;
+}
+	.ip-nav li{
+		margin: 30px 0px;
+	}
+	.ip-nav li label{
+		display: block;
+		color: #9C9C9C;
+		font-size: 12px;
+	}
+
+	.ip-nav li a{
+		color: #333333;
+	}
+		.ip-nav li a i{
+			color: #D08887;
+			margin-right: 15px;
+			font-size: 30px;
+		}
+
+
+
+.ip-message-box{
+	padding-top: 6px;
+}
+	.ip-message-box textarea{
+		border: none;
+		resize:none;
+		outline: none;
+		color: #86B2B3;
+	    margin-left: 10px;
+
+	}
+		.ip-message-box button{
+			height: 51px;
+			padding: 0px;
+			font-size: 15px;
+			margin: 0px;
+			background: none;
+			border: none;
+			color:#B1B1B1;
+		}
+
 [data-role="step_crm"]{
-	margin: 0px 40px;
+	padding: 0px 40px;
+}
+
+[data-role="messageBody"] {
+	overflow:auto;
+}
+[data-role="messageBody"] ul{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.ip-popover-in{
+	box-shadow: 1px 3px 12px #CCCCCC;
+	background: #FFF;
+	border-radius: 7px;
+	border-top-left-radius: 0px;
+	margin: 20px;
+	width: 75%
+}
+	.ip-popover-in-body{
+		padding:10px;
+	}
+	.ip-popover-in-time{
+		font-size: 10px;
+		padding:0px 10px 10px 10px;
+	}
+
+.ip-popover-out{
+	box-shadow: 1px 3px 12px #CCCCCC;
+	background: #86B2B3;
+	color:#FFFFFF;
+	border-radius: 7px;
+	border-top-right-radius: 0px;
+	margin: 20px;
+	float: right;
+	width: 75%
 }
