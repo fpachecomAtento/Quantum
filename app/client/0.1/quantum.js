@@ -88,7 +88,7 @@ var Quantum = function(){
 		var f = 60;//$(quantumProperties.componentsChat['footer']).outerHeight();
 
 		$(b).css({
-			height : heightWindow-(h+f+20)
+			height : heightWindow-(h+f+0)
 		});
 	}
 }

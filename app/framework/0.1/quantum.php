@@ -7,16 +7,19 @@
 	class Quantum{
 		var $propertiesApp;
 
-		protected $configDefault = array(
+		public $configDefault = array(
 				'pathPrimary' => '/Quantum',
 				'pathConfig' => '/config',
 				'pathTheme' => '/vendor/themes',
 				'pathjQuery' => '/vendor/jquery',
 				'pathJsFramework' => '/app/framework',
-				'pathAppClient' => '/app/client'
+				'pathAppClient' => '/app/client',
+				'pathAlerts' => '/app/alerts'
+
 			);
-		protected $errorMessage = array(
-				'get_settings' => 'No se encontro el archivo de configuraciones'
+		public $errorMessage = array(
+				'get_settings' => 'No se encontro el archivo de configuraciones',
+				'token' => 'El token no es valido'
 			);
 
 		public function get_settings(){
@@ -140,7 +143,7 @@
 				$_SERVER['SERVER_PORT'] === 80 ? '' : ':'.$_SERVER['SERVER_PORT'])));
 		}
 
-		protected function error_app($function, $line, $print = true){
+		public function error_app($function, $line, $print = true){
 			if($print)
 				echo "Error $function $line: ".$this->errorMessage[$function];
 			else
