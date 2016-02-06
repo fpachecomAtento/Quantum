@@ -11,21 +11,23 @@ var express = require('express'),
 	app.use(methodOverride());
 
 /* Base de datos */
-var database = require('Quantum/database.js'),
+var database = require('quantum-chat/database'),
 	ipDatabase = database;
 
 /* Applicacion Quantum*/
 var colors = require('colors');
-var appConfig = require('Quantum/config.js').appConfig;
+var appConfig = require('quantum-chat/config');
 
 	
 /* Express Router */
 var router = express.Router();
 
-
 ipDatabase.__construct({
-	server : '172.18.53.240',
-	base : 'Quantum_test',
+	server : appConfig.propertiesApp.database.server,
+	base : appConfig.propertiesApp.database.db,
+	user : appConfig.propertiesApp.database.user,
+	password : appConfig.propertiesApp.database.password,
+	port : appConfig.propertiesApp.database.port,
 	schema : {
 		rewrite : false
 	}
@@ -33,40 +35,40 @@ ipDatabase.__construct({
 
 ipDatabase.startConnection(function(){
 
-	app.listen(appConfig.port,function(){
-		console.log(colors.magenta('Node Server API Rest corriendo en el puerto '+appConfig.port));
+	app.listen(appConfig.propertiesApp.port,function(){
+		console.log(colors.magenta('Node Server API Rest corriendo en el puerto '+appConfig.propertiesApp.port));
 
 		/* Atlas : Api para CRUD de la aplicación */
 		var atlas = {
 			version : {
-				get : require('Quantum/atlas/version/atlas.get.js'),
-				post : require('Quantum/atlas/version/atlas.post.js'),
-				delete : require('Quantum/atlas/version/atlas.delete.js'),
-				put : require('Quantum/atlas/version/atlas.put.js')
+				get : require('quantum-chat/atlas/version/atlas.get.js'),
+				post : require('quantum-chat/atlas/version/atlas.post.js'),
+				delete : require('quantum-chat/atlas/version/atlas.delete.js'),
+				put : require('quantum-chat/atlas/version/atlas.put.js')
 			},
 			user : {
-				get : require('Quantum/atlas/user/atlas.get.js'),
-				post : require('Quantum/atlas/user/atlas.post.js'),
-				delete : require('Quantum/atlas/user/atlas.delete.js'),
-				put : require('Quantum/atlas/user/atlas.put.js')
+				get : require('quantum-chat/atlas/user/atlas.get.js'),
+				post : require('quantum-chat/atlas/user/atlas.post.js'),
+				delete : require('quantum-chat/atlas/user/atlas.delete.js'),
+				put : require('quantum-chat/atlas/user/atlas.put.js')
 			},
 			apps : {
-				get : require('Quantum/atlas/apps/atlas.get.js'),
-				post : require('Quantum/atlas/apps/atlas.post.js'),
-				delete : require('Quantum/atlas/apps/atlas.delete.js'),
-				put : require('Quantum/atlas/apps/atlas.put.js')
+				get : require('quantum-chat/atlas/apps/atlas.get.js'),
+				post : require('quantum-chat/atlas/apps/atlas.post.js'),
+				delete : require('quantum-chat/atlas/apps/atlas.delete.js'),
+				put : require('quantum-chat/atlas/apps/atlas.put.js')
 			},
 			companys : {
-				get : require('Quantum/atlas/companys/atlas.get.js'),
-				post : require('Quantum/atlas/companys/atlas.post.js'),
-				delete : require('Quantum/atlas/companys/atlas.delete.js'),
-				put : require('Quantum/atlas/companys/atlas.put.js')
+				get : require('quantum-chat/atlas/companys/atlas.get.js'),
+				post : require('quantum-chat/atlas/companys/atlas.post.js'),
+				delete : require('quantum-chat/atlas/companys/atlas.delete.js'),
+				put : require('quantum-chat/atlas/companys/atlas.put.js')
 			},
 			queues : {
-				get : require('Quantum/atlas/queues/atlas.get.js'),
-				post : require('Quantum/atlas/queues/atlas.post.js'),
-				delete : require('Quantum/atlas/queues/atlas.delete.js'),
-				put : require('Quantum/atlas/queues/atlas.put.js')
+				get : require('quantum-chat/atlas/queues/atlas.get.js'),
+				post : require('quantum-chat/atlas/queues/atlas.post.js'),
+				delete : require('quantum-chat/atlas/queues/atlas.delete.js'),
+				put : require('quantum-chat/atlas/queues/atlas.put.js')
 			}
 		};
 
@@ -74,7 +76,7 @@ ipDatabase.startConnection(function(){
 		var totem = {
 			construct : {
 				client : {
-					get : require ('Quantum/totem/construct.client/totem.construct.client.get.js')
+					get : require ('quantum-chat/totem/construct.client/totem.construct.client.get.js')
 				}
 			}
 		}
