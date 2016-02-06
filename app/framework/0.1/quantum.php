@@ -14,9 +14,13 @@
 				'pathjQuery' => '/vendor/jquery',
 				'pathJsFramework' => '/app/framework',
 				'pathAppClient' => '/app/client',
-				'pathAlerts' => '/app/alerts'
+				'pathAlerts' => '/app/alerts',
+				'API' => array(
+						'url' => 'http://localhost:6969'
+					)
 
 			);
+
 		public $errorMessage = array(
 				'get_settings' => 'No se encontro el archivo de configuraciones',
 				'token' => 'El token no es valido'
@@ -41,7 +45,7 @@
 		public function get_queues($queues,$class = false, $properties){
 			$listQueues = '<ul '.(($class) ? 'class="'.$class.'"' : '').'>';
 			foreach ($queues as $key => $value) {
-				$listQueues .= '<li><a href="#" id="q_'.$value['id'].'" data-role="q_queue" class="ip-primary-text-color">'.(($properties['icon']) ? '<i class="'.$value['icon'].'"></i>' : '').$value['name'].'</a>'.(($properties['caption'])? '<label>'.$value['caption'].'</label>' : '').'</li>';
+				$listQueues .= '<li><a href="#" id="q_'.$value['_id'].'" data-role="q_queue" class="ip-primary-text-color">'.(($properties['icon']) ? '<i class="'.$value['icon'].'"></i>' : '').$value['name'].'</a>'.(($properties['caption'])? '<label>'.$value['caption'].'</label>' : '').'</li>';
 			}
 			$listQueues .= '</ul>';
 
@@ -49,10 +53,10 @@
 		}
 
 		public function get_logo($logo){
-			switch ($logo['type']) {
+			switch ($logo['logoType']) {
 				case 'icon':
 					# code...
-					return '<i class="'.$logo['src'].'"></i>';
+					return '<i class="'.$logo['logSrc'].'"></i>';
 				break;
 				default:
 					# code...
@@ -150,5 +154,34 @@
 				return "Error $function $line: ".$this->errorMessage[$function];
 		}
 		protected function get_path_app(){return dirname(dirname(dirname(__DIR__)));}
+
+
+		/* API */
+
+		public function getContructApp($app,$token){
+			return $this->API_GET(array(
+					'API' => $this->configDefault['API']['url'].'/construct/'
+								.$app.'/'.$token
+				));
+		}
+
+		public function API_GET($parameters = null){
+
+		/* llamada a la API por metodo GET */
+
+		$curl = curl_init($parameters['API']);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		$curl_response = curl_exec($curl);
+
+		if ($curl_response === false) {
+			$info = curl_getinfo($curl);
+			curl_close($curl);
+			die('error occured during curl exec. Additioanl info: ' . var_export($info));
+		}
+
+		curl_close($curl);
+		return json_decode($curl_response,true);
+	}
+
 	}
 ?>

@@ -17,8 +17,9 @@ if(!isset($_GET['token'])){
 switch ($_GET['src']) {
 	case 'chat':
 		# code...
-		$_USER = get_config_user($_GET['token'],$pathClass.$pathUsers);
-		$QuantumObj->get_theme($_USER['theme']);
+		//$_USER = get_config_user($_GET['token'],$pathClass.$pathUsers);
+		$_USER = $QuantumObj->getContructApp('client',$_GET['token']);
+		$QuantumObj->get_theme($_USER['app'][0]['theme']);
 	break;
 	case 'agent':
 		

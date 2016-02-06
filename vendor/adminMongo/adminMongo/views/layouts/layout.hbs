@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>adminMongo</title>
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap.min.css' />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">
+    <link rel='stylesheet' type="text/css" href='/css/style.css' />
+    <link rel='stylesheet' type="text/css" href='/font-awesome/css/font-awesome.min.css' />
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/adminMongo.js"></script>
+  </head>
+  <body>
+      <nav class="navbar navbar-default navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">adminMongo</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/"><i class="fa fa-plug"></i>&nbsp; Connections</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container-fluid">
+        <div class="row">
+            {{#if sidebar_list}}
+                {{#if show_db_name}}
+                    <h2 class="text-center banner-heading">
+                        Connection: <a href="/{{conn_name}}/">{{conn_name}}</a> /
+                        Database:  <a href="/{{conn_name}}/{{db_name}}">{{db_name}}</a>
+                    </h2>
+                {{else}}
+                    <h2 class="text-center banner-heading">Connection: <a href="/{{conn_name}}/">{{conn_name}}</a></h2>
+                {{/if}}
+                <div id="sidebar" class="col-lg-2">
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-primary">Database Objects</li>
+                        {{#if conn_name}}
+                            <li class="list-group-item"><i class="fa fa-plug"></i>&nbsp;<a href="/{{conn_name}}">{{conn_name}}</a></li>   
+                        {{/if}}
+                        {{#each sidebar_list}}
+                            <li class="list-group-item"><i class="fa fa-database"></i>&nbsp; <a href="/{{../conn_name}}/{{@key}}">{{@key}}</a></li>
+                            {{#each this}}
+                                <li class="list-group-item coll_indent">&nbsp;&nbsp;&nbsp;<i class="fa fa-table"></i>&nbsp;&nbsp;&nbsp;<a href="/{{../../conn_name}}/{{@../key}}/{{this}}/view">{{this}}</a></li>
+                            {{/each}}
+                        {{/each}}
+                    </ul>
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-primary">Connections</li>
+                        {{#each conn_list}}
+                            <li class="list-group-item"><i class="fa fa-plug"></i>&nbsp;<a href="/{{@key}}">{{@key}}</a></li>
+                        {{/each}}
+                    </ul>
+                </div>
+            {{/if}}
+            {{{body}}}
+        </div>
+    </div>
+    <input type="hidden" value="{{conn_name}}" id="conn_name">
+    <input type="hidden" value="{{db_name}}" id="db_name">
+    <input type="hidden" value="" id="export_coll">
+    <!-- Export collection Modal -->
+    <div class="modal fade" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="exportCollectionLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="collectionNameLabel">Export collection</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="checkbox">
+                        <label>
+                            <input id="exportExcludeID" type="checkbox"> Exclude "_id" field?
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-sm pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success btn-sm pull-right" id="exportModalAction">Export</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- Export collection Modal -->
+    <div id="notify_message"></div>
+  </body>
+</html>

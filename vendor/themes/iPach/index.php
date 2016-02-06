@@ -4,24 +4,25 @@
 
 	$pathClass = dirname(dirname(dirname(__dir__)));
 	$pathUsers = '/users';
-	$_USERTheme = get_config_user($_GET['token'],$pathClass.$pathUsers);
+	//$_USERTheme = get_config_user($_GET['token'],$pathClass.$pathUsers);
+	$_USERTheme = $QuantumObjTheme->getContructApp('client',$_GET['token']);
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?= $_USERTheme['title']; ?></title>
+	<title><?= $_USERTheme['app'][0]['title']; ?></title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="<?= 
 		$QuantumObjTheme->get_url_server()
 			.$QuantumObjTheme->configDefault['pathPrimary']
 			.$QuantumObjTheme->configDefault['pathTheme']
-			.'/'.$_USERTheme['theme'];
+			.'/'.$_USERTheme['app'][0]['theme'];
 	?>/uikit/css/uikit.css">
 	<link rel="stylesheet" type="text/css" href="<?= 
 		$QuantumObjTheme->get_url_server()
 			.$QuantumObjTheme->configDefault['pathPrimary']
 			.$QuantumObjTheme->configDefault['pathTheme']
-			.'/'.$_USERTheme['theme'];
+			.'/'.$_USERTheme['app'][0]['theme'];
 	?>/style.css">
 	<script type="text/javascript" src="<?= 
 		$QuantumObjTheme->get_url_server()
@@ -33,25 +34,25 @@
 		$QuantumObjTheme->get_url_server()
 			.$QuantumObjTheme->configDefault['pathPrimary']
 			.$QuantumObjTheme->configDefault['pathAppClient']
-			.'/'.$_USERTheme['versionApp']
+			.'/'.$_USERTheme['app'][0]['versionApp']
 			.'/quantum.js';
 	?>"></script>
 	<script type="text/javascript" src="<?= 
 		$QuantumObjTheme->get_url_server()
 			.$QuantumObjTheme->configDefault['pathPrimary']
 			.$QuantumObjTheme->configDefault['pathTheme']
-			.'/'.$_USERTheme['theme'];
+			.'/'.$_USERTheme['app'][0]['theme'];
 		?>/script.js
 	"></script>
 </head>
 <body>
 	<div data-role="step_welcome">
 		
-		<div class="uk-text-center ip-title-primary"><?= $_USERTheme['title']; ?></div>
+		<div class="uk-text-center ip-title-primary"><?= $_USERTheme['app'][0]['title']; ?></div>
 		<div class="uk-text-center ip-title-principal ip-template" >
-			<?= $_USERTheme['messages']['welcome']; ?>
+			<?= $_USERTheme['app'][0]['messages']['welcome']; ?>
 		</div>
-		<div class="uk-text-center ip-logo-welcome"><?= $QuantumObjTheme->get_logo($_USERTheme['logo']); ?></div>
+		<div class="uk-text-center ip-logo-welcome"><?= $QuantumObjTheme->get_logo($_USERTheme['app'][0]['logo']); ?></div>
 		<div class="ip-list-queues">
 			<?php
 				echo $QuantumObjTheme->get_queues($_USERTheme['queues'],'ip-nav',array(
@@ -82,9 +83,9 @@
 				<?php
 			}
 		?>
-		<div class="uk-text-center ip-logo-welcome" style="margin-top:70px"><?= $QuantumObjTheme->get_logo($_USERTheme['logo']); ?></div>
+		<div class="uk-text-center ip-logo-welcome" style="margin-top:70px"><?= $QuantumObjTheme->get_logo($_USERTheme['app'][0]['logo']); ?></div>
 		<div class="uk-text-center ip-title-principal" style="padding: 150px 30px 0px 30px;color:#333">
-			<?= $_USERTheme['messages']['wait']; ?>
+			<?= $_USERTheme['app'][0]['messages']['wait']; ?>
 		</div>
 	</div>
 
