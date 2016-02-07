@@ -7,8 +7,9 @@
 	$IP = new iPachTheme();
 
 	class iPachTheme {
-		public function getServiceClient($queue, $arrayService){
+		public function getServiceClient($queue, $arrayService){			
 			foreach ($arrayService as $key => $value) {
+
 				if($value['_id'] == $queue)
 					return $value['name'];
 			}

@@ -69,6 +69,18 @@ ipDatabase.startConnection(function(){
 				post : require('quantum-chat/atlas/queues/atlas.post.js'),
 				delete : require('quantum-chat/atlas/queues/atlas.delete.js'),
 				put : require('quantum-chat/atlas/queues/atlas.put.js')
+			},
+			crm : {
+				get : require('quantum-chat/atlas/crm/atlas.get.js'),
+				post : require('quantum-chat/atlas/crm/atlas.post.js'),
+				delete : require('quantum-chat/atlas/crm/atlas.delete.js'),
+				put : require('quantum-chat/atlas/crm/atlas.put.js'),
+				field : {
+					get : require('quantum-chat/atlas/crm/crm.fields/atlas.get.js'),
+					post : require('quantum-chat/atlas/crm/crm.fields/atlas.post.js'),
+					delete : require('quantum-chat/atlas/crm/crm.fields/atlas.delete.js'),
+					put : require('quantum-chat/atlas/crm/crm.fields/atlas.put.js'),
+				}
 			}
 		};
 
@@ -116,6 +128,23 @@ ipDatabase.startConnection(function(){
 		router.get('/queue/:id',atlas.queues.get)
 			  .delete('/queue/:id',atlas.queues.delete)
 			  .put('/queue/:id',atlas.queues.put);
+
+
+		/*** METODOS Atlas API Crm ***/
+		router.post('/crm',atlas.crm.post);
+
+		router.get('/crm/:id',atlas.crm.get)
+			  .delete('/crm/:id',atlas.crm.delete)
+			  .put('/crm/:id',atlas.crm.put);
+
+			    /*** METODOS Atlas API Crm ***/
+				router.post('/crm/field',atlas.crm.field.post);
+
+				router.get('/crm/field/:id',atlas.crm.field.get)
+					  .delete('/crm/field/:id',atlas.crm.field.delete)
+					  .put('/crm/field/:id',atlas.crm.field.put);
+
+
 
 
 		/*** METODOS Totem API Construct ***/

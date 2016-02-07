@@ -69,11 +69,12 @@
 		<?php 
 			if(isset($_GET['queue'])){
 				include 'action.php';
+
 				$titleService = $IP->getServiceClient($_GET['queue'],$_USERTheme['queues']);
 				if($titleService){
 
 					?>
-						<div class="uk-text-center ip-title-primary"><?= $titleService ?></div>
+						<div class="uk-text-center ip-title-primary" data-role="titleService"><?= $titleService ?></div>
 					<?php
 				}
 			}
