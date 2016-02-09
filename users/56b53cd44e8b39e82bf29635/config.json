@@ -34,13 +34,6 @@
 		"icon" : "<i class=\"uk-icon-bullseye\"></i>",
 		"action" : "#",
 		"method" : "get",
-		"buttons" : [
-			{
-				"class" : "uk-button uk-button-success",
-				"action" : "#",
-				"label" : "Aceptar"
-			}
-		],
 		"fields" : [
 			{
 				"name" : "txtNameCustomer",
@@ -79,6 +72,12 @@
 					"min" : 3
 				},
 				"both" : true
+			},
+			{
+				"type" : "button",
+				"class" : "uk-button uk-button-success",
+				"action" : "#",
+				"label" : "Aceptar",
 			}
 		]
 	}

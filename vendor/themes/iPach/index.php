@@ -63,7 +63,7 @@
 		</div>
 	</div>
 	<div data-role="step_crm">
-		<?= ($QuantumObjTheme->paintForm($_USERTheme['crm'])); ?>
+		<?= ($QuantumObjTheme->paintForm($_USERTheme['crm'],$_USERTheme['fields'])); ?>
 	</div>
 	<div data-role="step_wait">
 		<?php 

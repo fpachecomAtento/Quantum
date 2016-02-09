@@ -69,15 +69,15 @@
 					.' placeholder="Escribenos un mensaje"></textarea>';
 		}
 
-		public function paintForm($_FORM,$withForm = true){
-			$t='';
-			foreach ($_FORM['fields'] as $key => $value) {
+		public function paintForm($_FORM,$_FIELDS,$withForm = true){
+			$t = '';
+			foreach ($_FIELDS as $key => $value) {
 				switch ($value['type']) {
 					case 'text':
 						$t .= '<div class="uk-form-row">';
 							$t .= '<label class="uk-form-label">'.$value['label'].'</label>';
 							$t .= '<div class="uk-form-controls">';
-								$t .= '<input type="text" name="'.$value['name'].'" placeholder="'.((!isset($value['placeholder'])) ? '' : $value['placeholder']).'" class="uk-width-1-1" data-require="'.$value['require'].'" data-min="'.$value['length']['min'].'" data-max="'.$value['length']['max'].'" autocomplete="off">';
+								$t .= '<input type="text" name="'.$value['name'].'" placeholder="'.((!isset($value['placeholder'])) ? '' : $value['placeholder']).'" class="uk-width-1-1" data-require="'.$value['require'].'" data-min="'.$value['length']['lengthMin'].'" data-max="'.$value['length']['lengthMax'].'" autocomplete="off">';
 							$t .= '</div>';
 						$t .= '</div>';
 
@@ -86,7 +86,7 @@
 						$t .= '<div class="uk-form-row">';
 							$t .= '<label class="uk-form-label">'.$value['label'].'</label>';
 							$t .= '<div class="uk-form-controls">';
-								$t .= '<input type="text" name="'.$value['name'].'" placeholder="'.((!isset($value['placeholder'])) ? '' : $value['placeholder']).'" class="" data-require="'.$value['require'].'" data-min="'.$value['length']['min'].'" data-max="'.$value['length']['max'].'" autocomplete="off">';
+								$t .= '<input type="text" name="'.$value['name'].'" placeholder="'.((!isset($value['placeholder'])) ? '' : $value['placeholder']).'" class="" data-require="'.$value['require'].'" data-min="'.$value['length']['lengthMin'].'" data-max="'.$value['length']['lengthMax'].'" autocomplete="off">';
 							$t .= '</div>';
 						$t .= '</div>';
 					break;
@@ -94,7 +94,7 @@
 						$t .= '<div class="uk-form-row">';
 							$t .= '<label class="uk-form-label">'.$value['label'].'</label>';
 							$t .= '<div class="uk-form-controls">';
-								$t .= '<textarea type="text" name="'.$value['name'].'" class="uk-width-1-1" data-require="'.$value['require'].'" data-min="'.$value['length']['min'].'" data-max="'.$value['length']['max'].'" autocomplete="off"></textarea>';
+								$t .= '<textarea type="text" name="'.$value['name'].'" class="uk-width-1-1" data-require="'.$value['require'].'" data-min="'.$value['length']['lengthMin'].'" data-max="'.$value['length']['lengthMax'].'" autocomplete="off"></textarea>';
 							$t .= '</div>';
 						$t .= '</div>';
 
@@ -119,20 +119,17 @@
 				}
 			}
 
-			if(isset($_FORM['buttons'])){
+			if(isset($_FORM[0]['button'])){
 				$t .= '<div class="uk-form-row">';
-				foreach ($_FORM['buttons'] as $key => $value) {
-						$t .= '<button class="'.$value['class'].'" onClick=\''.$value['action'].'\'>'.$value['label'].'</button> ';
-				}
+					$t .= '<button class="'.$_FORM[0]['button']['buttonsClass'].'" onClick=\''.$_FORM[0]['button']['buttonsAction'].'\'>'.$_FORM[0]['button']['buttonsLabel'].'</button> ';
 				$t .= '</div>';
 			}
 			
-
-		return ($withForm) ? '<form '.(($_FORM['autosumbit']) ? 'data-submit="true"' : 'data-submit="false"')
-				.' class="uk-form uk-form-horizontal" id="'.$_FORM['id']
-				.'" action="'.$_FORM['action'].'" method="'.$_FORM['method']
-				.'" data-callback="'.$_FORM['callBack'].'"><fieldset data-uk-margin><div class="uk-text-center" data-role="frm-title">'
-				.$_FORM['title'].'</div><div style="margin:15px;">'.$t.'</div></fieldset></form>' : $t;
+		return ($withForm) ? '<form '.((!$_FORM[0]['autosumbit']) ? 'data-submit="true"' : 'data-submit="false"')
+				.' class="uk-form uk-form-horizontal" id="'.$_FORM[0]['idFrm']
+				.'" action="'.$_FORM[0]['action'].'" method="'.$_FORM[0]['method']
+				.'" data-callback="'.$_FORM[0]['callBack'].'"><fieldset data-uk-margin><div class="uk-text-center" data-role="frm-title">'
+				.$_FORM[0]['title'].'</div><div style="margin:15px;">'.$t.'</div></fieldset></form>' : $t;
 		}
 
 		public function get_url_server(){
