@@ -18,6 +18,7 @@ var database = require('quantum-chat/database'),
 var colors = require('colors');
 var appConfig = require('quantum-chat/config');
 
+process.title = 'LHC API: '+appConfig.propertiesApp.port;
 	
 /* Express Router */
 var router = express.Router();
@@ -36,7 +37,7 @@ ipDatabase.__construct({
 ipDatabase.startConnection(function(){
 
 	app.listen(appConfig.propertiesApp.port,function(){
-		console.log(colors.magenta('Node Server API Rest corriendo en el puerto '+appConfig.propertiesApp.port));
+		console.log(colors.magenta('Node Server API Rest LHC corriendo en el puerto '+appConfig.propertiesApp.port));
 
 		/* Atlas : Api para CRUD de la aplicación */
 		var atlas = {
