@@ -125,7 +125,8 @@
 				$t .= '</div>';
 			}
 			
-		return ($withForm) ? '<form '.((!$_FORM[0]['autosumbit']) ? 'data-submit="true"' : 'data-submit="false"')
+			//'<form '.((!$_FORM[0]['autosumbit']) ? 'data-submit="true"' : 'data-submit="false"')
+		return ($withForm) ? '<form '.((!$_FORM[0]['autosumbit']) ? 'data-submit="false"' : 'data-submit="true"')
 				.' class="uk-form uk-form-horizontal" id="'.$_FORM[0]['idFrm']
 				.'" action="'.$_FORM[0]['action'].'" method="'.$_FORM[0]['method']
 				.'" data-callback="'.$_FORM[0]['callBack'].'"><fieldset data-uk-margin><div class="uk-text-center" data-role="frm-title">'

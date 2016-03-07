@@ -15,7 +15,7 @@ var Quantum = function(){
 
 	this.prepareSteps = function(){
 		var properties = {
-			start : 3
+			start : 0
 		}
 
 		this.currentStep = properties.start;

@@ -1,5 +1,5 @@
 var quantumProperties = {
-	start : 0,
+	start : 4,
 	selectorQueues : '[data-role = "q_queue"]',
 	steps : [
 		'[data-role="step_welcome"]', // 0

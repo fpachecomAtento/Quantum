@@ -40,7 +40,42 @@ ipDatabase.startConnection(function(){
 	http.listen(appConfig.propertiesApp.portQuark,function(){
 		console.log(colors.magenta('Node Server API Rest QUARK corriendo en el puerto '+appConfig.propertiesApp.portQuark));
 
-		/* Quark : Api para Sockets de la aplicación */
+		/* Metodos para Connections */
+		router.get('/', function(req, res){
+			res.sendFile(__dirname + '/dummie.client.html');
+		});
+
+		app.use(router);
+
+		/* Inicio de Socket */
+		var socketNsp = io.of(socketsServer.getNameSpaceSocket());
+			socketNsp.on('connection',socketsServer.connection);
+	});
+
+});
+
+
+var socketsServer = {
+	connection : function(socket){
+		console.log(colors.inverse.yellow('Usuario conectado -> '+ socket.id+' -> namespace -> '+socket.nsp.name));
+
+
+		socket.on('chat message', function(msg){
+			console.log('Nuevo mensaje: '+msg);
+			socket.emit('chat message', msg);
+		});
+
+		socket.on('disconnect',socketsServer.disconnect);
+	},
+	disconnect : function(){
+		console.log(colors.inverse.magenta('Usuario desconectado'));
+	},
+	getNameSpaceSocket : function(){
+		return '/56b93af61f93db98399b3855';
+	}
+}
+
+/* Quark : Api para Sockets de la aplicación 
 		var quark = {
 			connections : {
 				post : {
@@ -48,36 +83,8 @@ ipDatabase.startConnection(function(){
 					callback : socketsServer.createConnection
 				}
 			}
-		}
-
-		/* Metodos para Connections */
-		router.get('/', function(req, res){
-			res.sendFile(__dirname + '/dummie.client.html');
-		});
-
+		}*/
+/*
 		router.post('/connections',function(res, req){
 			quark.connections.post.url(res, req, quark.connections.post.callback);
-		});
-	
-
-		app.use(router);		
-	});
-
-});
-
-
-var socketsServer = {
-	createConnection : function(nameSpaceSocket){
-		console.log('se creo : '+nameSpaceSocket);
-		io.of('/'+nameSpaceSocket)
-			.on('connection',function(socket){
-				console.log(colors.inverse.yellow('Usuario conectado -> '+ socket.id));
-
-				socket.on('disconnect',socketsServer.disconnect);
-			});
-	},
-	disconnect : function(){
-		console.log(colors.inverse.magenta('Usuario desconectado -> '+ socket.id));
-	}
-}
-
+		});*/
